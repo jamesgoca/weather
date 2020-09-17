@@ -45,18 +45,16 @@ def index():
 
 @app.route("/stats")
 def stats():
-	cpu = str(psutil.cpu_percent())
+	cpu = psutil.cpu_percent()
 	virtual_memory = psutil.virtual_memory()
-	disk_usage = psutil.disk_usage()
-	core_temp = psutil.sensors_temperatures()
+	disk_usage = psutil.disk_usage("/")
 
 	stats_to_send = {
-		"cpu": cpu + "%",
-		"memory_available": virtual_memory["available"],
-		"memory_used": virtual_memory["used"],
-		"memory_free": virtual_memory["free"],
-		"disk_usage": disk_usage["percent"] + "%",
-		"core_temp": core_temp["core_temp"][0]["current"]
+		"cpu": str(cpu) + "%",
+		"memory_available": virtual_memory[1],
+		"memory_used": str(virtual_memory[2]) + "%",
+		"memory_free": virtual_memory[3],
+		"disk_usage": str(disk_usage[3]) + "%"
 	}
 
 	return jsonify(stats_to_send)
