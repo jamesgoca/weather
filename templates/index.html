@@ -10,8 +10,14 @@
 			<h1>jamesgoca Weather Station</h1>
 		</header>
 		<main>
-			<h2>What's the weather like today?</h2>
-			<p>In James' room, it is currently {{ current_temp }} temperature.</p>
+			<section>
+				<h2>Indoors</h2>
+				<p>In James' room, it is currently {{ current_temp }} temperature.</p>
+			</section>
+			<section>
+				<h2>Outdoors</h2>
+				<p>Outside, the weather forecast is for {{ description }}.</p>
+			</section>
 		</main>
 		<footer>
 		</footer>
