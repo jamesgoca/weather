@@ -1,6 +1,7 @@
+import os
 import json
 import pyowm
-import os
+import datetime
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template
 
@@ -20,6 +21,8 @@ def index():
 
 	forecast = observation.weather
 
+	now = datetime.datetime.now()
+
 	return render_template("index.html",
 		indoor_temp=round(int(data[-1]["temp"]), 2),
 		indoor_pressure=round(int(data[-1]["pressure"]), 2),
@@ -27,7 +30,7 @@ def index():
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
-		time=forecast.time
+		time=now.strftime("%Y-%m-%d %H:%M:%S")
 	)
 
 if __name__ == "__main__":
