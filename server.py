@@ -59,7 +59,7 @@ def stats():
 		"memory_used": str(virtual_memory[2]) + "%",
 		"memory_free": str(virtual_memory[3]),
 		"disk_usage": str(disk_usage[3]) + "%",
-		"temperature": str(CPUTemperature().temperature),
+		"temperature": str(CPUTemperature().temperature) + " degrees celcius",
 		"uptime": str(uptime) + " seconds"
 	}
 
