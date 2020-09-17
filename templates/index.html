@@ -16,7 +16,7 @@
 			</section>
 			<section>
 				<h2>Outdoors</h2>
-				<p>Outside, it is {{ outdoor_temp }} degrees celcius. The humidity is {{ outdoor_humidity }}. The wind speed is {{ wind_speed }}.</p>
+				<p>Outside, it is {{ outdoor_temp["temp"] }} degrees celcius. It feels like {{ outdoor_temp["feels_like"] }} degrees. It is expected that there will be a high of {{ outdoor_temp["temp_max"] }} degrees and a low of {{ outdoor_temp["temp_min"] }} degrees today. The humidity is {{ outdoor_humidity }}. The wind speed is {{ wind_speed }} kilometers per hour.</p>
 			</section>
 		</main>
 		<footer>
