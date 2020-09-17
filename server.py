@@ -23,6 +23,10 @@ def index():
 
 	now = datetime.datetime.now()
 
+	last_rpi_temp_check = datetime.strptime(data[-1]["time"], "%Y-%m-%d %H:%M:%S")
+
+	last_updated_indoors = last_rpi_temp_check.strftime("%A %d %B at %H:%M:%S")
+
 	return render_template("index.html",
 		indoor_temp=round(int(data[-1]["temp"]), 2),
 		indoor_pressure=round(int(data[-1]["pressure"]), 2),
@@ -30,7 +34,8 @@ def index():
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
-		time=now.strftime("%Y-%m-%d at %H:%M:%S")
+		time=now.strftime("%A %d %B at %H:%M:%S"),
+		last_updated_indoors=last_updated_indoors
 	)
 
 @app.route("/data.json")

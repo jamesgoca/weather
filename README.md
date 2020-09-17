@@ -8,7 +8,9 @@ This weather station is accessible at [weather.jamesg.blog](https://weather.jame
 
 First, clone this repository:
 
-```git clone https://github.com/jamesgoca/weather```
+```
+git clone https://github.com/jamesgoca/weather
+```
 
 Next, set up a virtual environment and install the required dependencies:
 
