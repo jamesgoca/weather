@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>jamesgoca Weather Station</title>
+
+		<link rel="stylesheet" href="/static/styles.css" />
+	</head>
+	<body style="{% if outdoor_temp['temp'] > 15 %}background-color:lightsalmon;{% else %}background-color:lightskyblue;{% endif %}">
+		<header>
+			<h1>jamesgoca Weather Station</h1>
+			<p>Weather Report for {{ time }}.</p>
+		</header>
+		<main>
+			{% block content %}
+			{% endblock %}
+		</main>
+		<footer>
+			<p>Built by <a href="https://jamesg.blog">jamesgoca</a>.</p>
+			<p>Indoor data collected from jamesgoca's Raspberry Pi 4. Outdoor data from <a href="https://openweathermap.org">OpenWeatherMap</a>.</p>
+			<p>Source code available on <a href="https://github.com/jamesgoca/weather">GitHub</a>.</p>
+		</footer>
+	</body>
+</html>
