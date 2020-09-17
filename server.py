@@ -50,7 +50,7 @@ def stats():
 	virtual_memory = psutil.virtual_memory()
 	disk_usage = psutil.disk_usage("/")
 
-	uptime = os.popen("uptime")
+	uptime = os.popen("uptime").readline()
 
 	stats_to_send = {
 		"cpu": str(cpu) + "%",
