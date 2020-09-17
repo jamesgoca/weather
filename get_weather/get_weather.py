@@ -2,24 +2,32 @@ import json
 import datetime
 from sense_hat import SenseHat
 
+# Initialize Sense HAT
+
 sense = SenseHat()
 sense.clear()
 
-get_temp = sense.get_temperature()
 today = datetime.datetime.now()
 
+# Read data
 
-with open ("data/temperature_data.json", "r") as file:
+with open ("data/data.json", "r") as file:
 	data = json.load(file)
+
+# Add data to JSON data file
 
 data.append(
 	{
-		"temp": get_temp,
+		"temp": sense.get_temperature(),
+		"pressure": sense.get_pressure(),
+		"humidity": sense.get_humidity(),
 		"time": today.strftime("%Y-%m-%d %H:%M:%S")
 	}
 )
 
-sense.show_message(temp)
+sense.show_message(get_temp)
 
-with open("data/temperature_data.json", "w") as new_file:
+# Write new data to file
+
+with open("data/data.json", "w") as new_file:
 	json.dump(data, new_file)
