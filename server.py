@@ -10,9 +10,7 @@ load_dotenv()
 app = Flask(__name__)
 owm = pyowm.OWM(os.environ.get("pyowm-key"))
 mgr = owm.weather_manager()
-observation = mgr.weather_at_place('London,GB')
-
-COUNTRY = "UK"
+observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
 
 @app.route("/")
 def index():
