@@ -50,13 +50,16 @@ def stats():
 	virtual_memory = psutil.virtual_memory()
 	disk_usage = psutil.disk_usage("/")
 
+	uptime = os.popen("uptime")
+
 	stats_to_send = {
 		"cpu": str(cpu) + "%",
 		"memory_available": str(virtual_memory[1]),
 		"memory_used": str(virtual_memory[2]) + "%",
 		"memory_free": str(virtual_memory[3]),
 		"disk_usage": str(disk_usage[3]) + "%",
-		"temperature": str(CPUTemperature().temperature)
+		"temperature": str(CPUTemperature().temperature),
+		"uptime": uptime
 	}
 
 	return jsonify(stats_to_send)
