@@ -14,7 +14,7 @@ observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
 
 @app.context_processor
 def inject_color():
-	now = datetime.datetime.now()
+	forecast = observation.weather
 	
 	return dict(color_temp=forecast.temperature("celsius")["temp"])
 
