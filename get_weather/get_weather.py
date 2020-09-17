@@ -25,7 +25,7 @@ data.append(
 	}
 )
 
-sense.show_message(sense.get_temperature())
+sense.show_message(str(sense.get_temperature()))
 
 # Write new data to file
 
