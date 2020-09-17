@@ -1,6 +1,7 @@
 import os
 import json
 import pyowm
+import psutil
 import datetime
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, send_from_directory
@@ -41,6 +42,24 @@ def index():
 		time=now.strftime("%A %d %B at %H:%M:%S"),
 		last_updated_indoors=last_updated_indoors
 	)
+
+@app.route("/stats")
+def stats():
+	cpu = str(psutil.cpu_percent())
+	virtual_memory = psutil.virtual_memory()
+	disk_usage = psutil.disk_usage()
+	core_temp = psutil.sensors_temperatures()
+
+	stats_to_send = {
+		"cpu": cpu + "%",
+		"memory_available": virtual_memory["available"],
+		"memory_used": virtual_memory["used"],
+		"memory_free": virtual_memory["free"],
+		"disk_usage": disk_usage["percent"] + "%",
+		"core_temp": core_temp["core_temp"][0]["current"]
+	}
+
+	return jsonify(stats_to_send)
 
 @app.route("/data.json")
 def get_data():
