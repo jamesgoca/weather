@@ -59,7 +59,7 @@ def stats():
 		"memory_free": str(virtual_memory[3]),
 		"disk_usage": str(disk_usage[3]) + "%",
 		"temperature": str(CPUTemperature().temperature),
-		"uptime": uptime
+		"uptime": str(uptime)
 	}
 
 	return jsonify(stats_to_send)
