@@ -25,8 +25,6 @@ data.append(
 	}
 )
 
-sense.show_message(str(sense.get_temperature()))
-
 # Write new data to file
 
 with open("data/data.json", "w") as new_file:
