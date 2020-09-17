@@ -23,7 +23,7 @@ def index():
 
 	now = datetime.datetime.now()
 
-	last_rpi_temp_check = datetime.strptime(data[-1]["time"], "%Y-%m-%d %H:%M:%S")
+	last_rpi_temp_check = datetime.datetime.strptime(data[-1]["time"], "%Y-%m-%d %H:%M:%S")
 
 	last_updated_indoors = last_rpi_temp_check.strftime("%A %d %B at %H:%M:%S")
 
