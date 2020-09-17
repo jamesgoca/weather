@@ -21,9 +21,9 @@ def index():
 	forecast = observation.weather
 
 	return render_template("index.html",
-		indoor_temp=data[-1]["temp"],
-		indoor_pressure=data[-1]["pressure"],
-		indoor_humidity=data[-1]["humidity"],
+		indoor_temp=round(int(data[-1]["temp"]), 2),
+		indoor_pressure=round(int(data[-1]["pressure"]), 2),
+		indoor_humidity=round(int(data[-1]["humidity"]), 2),
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,

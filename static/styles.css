@@ -1,4 +1,10 @@
 html {
 	font-family: Verdana, Geneva, sans-serif;
+	min-width: 50%;
+	width: 50%;
+	margin: auto;
 }
 
+.right {
+	float: right;
+}
