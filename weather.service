@@ -1,0 +1,13 @@
+[Unit]
+Description=uWSGI instance to serve this weather app
+After=network.target
+
+[Service]
+User=james
+Group=www-data
+WorkingDirectory=/home/james/weather/
+Environment="PATH=/home/james/weather/venv/bin"
+ExecStart=/home/james/weather/venv/bin/uwsgi --ini weather.ini
+
+[Install]
+WantedBy=multi-user.target
