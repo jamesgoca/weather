@@ -33,9 +33,9 @@ def index():
 		time=now.strftime("%Y-%m-%d at %H:%M:%S")
 	)
 
-@app.route("/data")
+@app.route("/data.json")
 def get_data():
-	return send_from_directory('get_weather/data/data.json')
+	return send_from_directory("get_weather/data/", "data.json")
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True)
