@@ -16,7 +16,7 @@ observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
 def inject_color():
 	now = datetime.datetime.now()
 	
-    return dict(color_temp=forecast.temperature("celsius")["temp"])
+	return dict(color_temp=forecast.temperature("celsius")["temp"])
 
 @app.route("/")
 def index():
