@@ -30,7 +30,7 @@ def index():
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
-		time=now.strftime("%Y-%m-%d %H:%M:%S")
+		time=now.strftime("%Y-%m-%d at %H:%M:%S")
 	)
 
 if __name__ == "__main__":
