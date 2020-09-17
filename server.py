@@ -8,19 +8,26 @@ load_dotenv()
 
 app = Flask(__name__)
 owm = pyowm.OWM(os.environ.get("pyowm-key"))
+mgr = owm.weather_manager()
+observation = mgr.weather_at_place('London,GB')
+
+COUNTRY = "UK"
 
 @app.route("/")
 def index():
 	with open("get_weather/data/data.json") as file:
 		data = json.load(file)
 
-	forecast = owm.daily_forecast('london,uk')
+	forecast = observation.weather
 
-	weather = forecast.get_weather_at(datetime.datetime.now())
-
-	description = weather.get_detailed_status()
-
-	return render_template("index.html", current_temp=data[-1], description=description)
+	return render_template("index.html",
+		indoor_temp=data[-1]["temp"],
+		indoor_pressure=data[-1]["pressure"],
+		indoor_humidity=data[-1]["humidity"],
+		outdoor_temp=forecast.humidity,
+		wind_speed=forecast.wind()["speed"],
+		outdoor_humidity=forecast.temperature("celcius"),
+	)
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True)
