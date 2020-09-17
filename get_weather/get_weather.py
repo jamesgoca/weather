@@ -19,5 +19,7 @@ data.append(
 	}
 )
 
+sense.show_message(temp)
+
 with open("data/temperature_data.json", "w") as new_file:
 	json.dump(data, new_file)
