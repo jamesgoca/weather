@@ -3,6 +3,7 @@ import json
 import pyowm
 import psutil
 import datetime
+import time
 from gpiozero import CPUTemperature
 from dotenv import load_dotenv
 from flask import Flask, jsonify, render_template, send_from_directory
@@ -50,7 +51,7 @@ def stats():
 	virtual_memory = psutil.virtual_memory()
 	disk_usage = psutil.disk_usage("/")
 
-	uptime = os.popen("uptime").readline()
+	uptime = time.time() - psutil.boot_time()
 
 	stats_to_send = {
 		"cpu": str(cpu) + "%",
@@ -59,7 +60,7 @@ def stats():
 		"memory_free": str(virtual_memory[3]),
 		"disk_usage": str(disk_usage[3]) + "%",
 		"temperature": str(CPUTemperature().temperature),
-		"uptime": str(uptime)
+		"uptime": str(uptime) + " seconds"
 	}
 
 	return jsonify(stats_to_send)
