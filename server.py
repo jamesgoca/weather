@@ -3,7 +3,7 @@ import json
 import pyowm
 import datetime
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, send_from_directory
 
 load_dotenv()
 
@@ -32,6 +32,10 @@ def index():
 		outdoor_humidity=forecast.humidity,
 		time=now.strftime("%Y-%m-%d at %H:%M:%S")
 	)
+
+@app.route("/data")
+def get_data():
+	return send_from_directory('get_weather/data/data.json')
 
 if __name__ == "__main__":
 	app.run(host="0.0.0.0", debug=True)
