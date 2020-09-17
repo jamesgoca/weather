@@ -1,8 +1,15 @@
 html {
 	font-family: Verdana, Geneva, sans-serif;
+}
+
+body {
 	min-width: 50%;
 	width: 50%;
 	margin: auto;
+}
+
+section {
+	width: 50%;
 }
 
 .right {

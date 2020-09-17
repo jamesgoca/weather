@@ -27,6 +27,7 @@ def index():
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
+		time=forecast.time
 	)
 
 if __name__ == "__main__":
