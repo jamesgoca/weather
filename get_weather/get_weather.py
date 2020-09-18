@@ -14,11 +14,13 @@ today = datetime.datetime.now()
 with open ("/home/james/weather/get_weather/data/data.json", "r") as file:
 	data = json.load(file)
 
+temp = sense.get_temperature()
+
 # Add data to JSON data file
 
 data.append(
 	{
-		"temp": sense.get_temperature(),
+		"temp": temp,
 		"pressure": sense.get_pressure(),
 		"humidity": sense.get_humidity(),
 		"time": today.strftime("%Y-%m-%d %H:%M:%S")
