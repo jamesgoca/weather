@@ -71,7 +71,7 @@ def stats():
 
 	return jsonify(stats_to_send)
 
-@app.route("/webmentions", methods="POST")
+@app.route("/webmentions", methods=["POST"])
 def webmentions():
 	if request.data["secret"] == os.environ.get("webmention-secret"):
 		sense.clear()
