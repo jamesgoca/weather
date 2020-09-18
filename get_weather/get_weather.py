@@ -37,6 +37,7 @@ yellow = [255,255,0]
 blue = 	[0,0,255]
 dark_blue = [0,0,139]
 
+print(temp)
 print(dark_blue * 64)
 
 if temp <= 2:
