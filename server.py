@@ -4,11 +4,13 @@ import pyowm
 import psutil
 import datetime
 import time
+from sense_hat import SenseHat
 from gpiozero import CPUTemperature
 from dotenv import load_dotenv
-from flask import Flask, jsonify, render_template, send_from_directory
+from flask import Flask, jsonify, render_template, send_from_directory, request
 
 load_dotenv()
+sense = SenseHat()
 
 app = Flask(__name__)
 owm = pyowm.OWM(os.environ.get("pyowm-key"))
@@ -68,6 +70,25 @@ def stats():
 	}
 
 	return jsonify(stats_to_send)
+
+@app.route("/webmentions", methods="POST")
+def webmentions():
+	if request.data["secret"] == os.environ.get("webmention-secret"):
+		sense.clear()
+
+		green = (0, 0, 255)
+
+		pixel_array = [green * 64]
+
+		sense.set_pixels(pixel_array)
+
+		message = { "message": "Success." }
+
+		return jsonify(message)
+	else:
+		message = { "message": "Not authenticated." }
+
+		return jsonify(message), 403
 
 @app.route("/data.json")
 def get_data():
