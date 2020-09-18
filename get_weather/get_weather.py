@@ -1,6 +1,17 @@
 import json
 import datetime
 from sense_hat import SenseHat
+import pyowm
+
+# Initialize OWM
+
+owm = pyowm.OWM(os.environ.get("pyowm-key"))
+mgr = owm.weather_manager()
+observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
+
+forecast = observation.weather
+
+outdoor_temp = forecast.temperature("celsius")["temp"]
 
 # Initialize Sense HAT
 
@@ -14,13 +25,11 @@ today = datetime.datetime.now()
 with open ("/home/james/weather/get_weather/data/data.json", "r") as file:
 	data = json.load(file)
 
-temp = sense.get_temperature()
-
 # Add data to JSON data file
 
 data.append(
 	{
-		"temp": temp,
+		"temp": sense.get_temperature(),
 		"pressure": sense.get_pressure(),
 		"humidity": sense.get_humidity(),
 		"time": today.strftime("%Y-%m-%d %H:%M:%S")
@@ -37,14 +46,11 @@ yellow = [255,255,0]
 blue = 	[0,0,255]
 dark_blue = [0,0,139]
 
-print(temp)
-print(dark_blue * 64)
-
-if temp <= 2:
+if outdoor_temp <= 2:
 	color_array = [dark_blue] * 64
-elif temp >= 3 and temp <= 8:
+elif outdoor_temp >= 3 and outdoor_temp <= 8:
 	color_array = [blue] * 64
-elif temp >= 9 and temp <= 15:
+elif outdoor_temp >= 9 and outdoor_temp <= 15:
 	color_array = [yellow] * 64
 else:
 	color_array = [orange] * 64
