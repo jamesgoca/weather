@@ -1,7 +1,11 @@
+import os
 import json
+import pyowm
 import datetime
 from sense_hat import SenseHat
-import pyowm
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Initialize OWM
 
