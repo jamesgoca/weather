@@ -40,12 +40,12 @@ dark_blue = [0,0,139]
 print(dark_blue * 64)
 
 if temp <= 2:
-	color_array = dark_blue * 64
+	color_array = [dark_blue] * 64
 elif temp >= 3 and temp <= 8:
-	color_array = blue * 64
+	color_array = [blue] * 64
 elif temp >= 9 and temp <= 15:
-	color_array = yellow * 64
+	color_array = [yellow] * 64
 else:
-	color_array = orange * 64
+	color_array = [orange] * 64
 
 sense.set_pixels(color_array)
