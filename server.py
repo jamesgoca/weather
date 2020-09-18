@@ -21,6 +21,8 @@ observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
 def inject_color():
 	forecast = observation.weather
 
+	now = datetime.datetime.now()
+
 	time = now.strftime("%A %d %B at %H:%M:%S")
 
 	return dict(
@@ -34,8 +36,6 @@ def index():
 		data = json.load(file)
 
 	forecast = observation.weather
-
-	now = datetime.datetime.now()
 
 	last_rpi_temp_check = datetime.datetime.strptime(data[-1]["time"], "%Y-%m-%d %H:%M:%S")
 
