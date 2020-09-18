@@ -5,7 +5,18 @@
 
 		<link rel="stylesheet" href="/static/styles.css" />
 	</head>
-	<body style="{% if color_temp > 15 %}background-color:lightsalmon;{% else %}background-color:lightskyblue;{% endif %}">
+	<body style="background-color:
+	{% if color_temp <= 2 %}
+	midnightblue
+	{% if color_temp >= 3 and color_temp <= 8 %}
+	lemonchiffon
+	{% if color_temp >= 9 and color_temp <= 15 %}
+	{% if color_temp >= 16 %}
+	lightsalmon
+	{% else %}
+	lightskyblue
+	{% endif %};
+	">
 		<header>
 			<h1>jamesgoca Weather Station</h1>
 			<p>Weather Report for {{ time }}.</p>

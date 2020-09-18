@@ -19,7 +19,12 @@ observation = mgr.weather_at_place("{},GB".format(os.environ.get("location")))
 def inject_color():
 	forecast = observation.weather
 
-	return dict(color_temp=forecast.temperature("celsius")["temp"])
+	time = now.strftime("%A %d %B at %H:%M:%S")
+
+	return dict(
+		color_temp=forecast.temperature("celsius")["temp"],
+		time=time
+	)
 
 @app.route("/")
 def index():
@@ -41,7 +46,6 @@ def index():
 		outdoor_temp=forecast.temperature("celsius"),
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
-		time=now.strftime("%A %d %B at %H:%M:%S"),
 		last_updated_indoors=last_updated_indoors
 	)
 
