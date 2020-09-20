@@ -115,9 +115,11 @@ def color_grid():
 			for r in grid_rows:
 				writer.writerow(r)
 
-		sense.set_pixels(grid_rows)
+		flattened_list = [item for sublist in grid_rows for item in sublist]
 
-		message = { "grid": grid_rows }
+		sense.set_pixels(flattened_list)
+
+		message = { "grid": flattened_list }
 
 		return jsonify(message)
 	else:
