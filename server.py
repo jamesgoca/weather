@@ -88,8 +88,9 @@ def webmentions():
 
 		for i in range(0, 3):
 			sense.set_pixels(green_pixel_array)
-			time.sleep(2)
+			time.sleep(1)
 			sense.set_pixels(black_pixel_array)
+			time.sleep(1)
 
 		message = { "message": "Success." }
 
