@@ -1,14 +1,14 @@
 import csv
 import numpy as np
-from sense_hat import SenseHat
+# from sense_hat import SenseHat
 
-sense = SenseHat()
+# sense = SenseHat()
 
 data = {
-		"x": 3,
-		"y": 3,
-		"color": [255, 255, 254]
-	}
+	"x": 3,
+	"y": 3,
+	"color": [255, 255, 254]
+}
 
 with open("grid.csv", "r") as file:
 	grid_rows = []
@@ -30,16 +30,10 @@ for x in split_array:
 	for item in y:
 		final.append(item)
 
-# print(final[0])
+with open("grid.csv", "w") as file:
+	writer = csv.writer(file)
+
+	for f in final:
+		writer.writerow(f)
 
 sense.set_pixels(final)
-
-# split_array[data["x"]][data["y"]] = str(data["color"])
-
-# with open("grid.csv", "w", newline="") as file:
-# 	writer = csv.writer(file)
-# 	writer.writerows(grid_rows)
-
-# sense.set_pixels(grid_rows)
-
-# message = { "grid": flattened_list }
