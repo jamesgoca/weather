@@ -5,6 +5,7 @@ import pyowm
 import psutil
 import datetime
 import time
+import numpy as np
 from sense_hat import SenseHat
 from gpiozero import CPUTemperature
 from dotenv import load_dotenv
