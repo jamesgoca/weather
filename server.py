@@ -91,42 +91,6 @@ def webmentions():
 
 		return jsonify(message), 403
 
-@app.route("/colors", methods=["POST"])
-def color_grid():
-	data = {
-		"x": 1,
-		"y": 1,
-		"color": [255, 255, 255],
-		"ip": request.remote_addr
-	}
-
-	if data["x"] <= 7 and data["x"] >= 0 and data["y"] <= 7 and data["y"] >= 0:
-		with open("grid.csv", "r") as file:
-			grid_rows = []
-			reader = csv.reader(file)
-
-			for r in reader:
-				grid_rows.append(r)
-
-		grid_rows[data["x"]][data["y"]] = data["color"]
-
-		with open("grid.csv", "w", newline="") as file:
-			writer = csv.writer(file)
-			for r in grid_rows:
-				writer.writerow(r)
-
-		flattened_list = [item for sublist in grid_rows for item in sublist]
-
-		sense.set_pixels(flattened_list)
-
-		message = { "grid": flattened_list }
-
-		return jsonify(message)
-	else:
-		message = { "message": "Please enter a valid pixel location." }
-
-		return jsonify(message) 
-
 @app.route("/data.json")
 def get_data():
 	return send_from_directory("get_weather/data/", "data.json")

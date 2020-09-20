@@ -8,6 +8,7 @@ Group=www-data
 WorkingDirectory=/home/james/weather/
 Environment="PATH=/home/james/weather/venv/bin"
 ExecStart=/home/james/weather/venv/bin/uwsgi --ini weather.ini
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
