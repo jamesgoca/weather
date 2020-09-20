@@ -28,9 +28,9 @@ final = []
 for x in split_array:
 	y = x.tolist()
 	for item in y:
-		final.append(y)
+		final.append(item)
 
-print(final[0][0])
+# print(final[0])
 
 sense.set_pixels(final)
 
