@@ -83,8 +83,8 @@ def webmentions():
 
 		green = (0, 0, 255)
 		black = (0, 0, 0)
-		green_pixel_array = [green * 64]
-		black_pixel_array = [black * 64]
+		green_pixel_array = [green] * 64
+		black_pixel_array = [black] * 64
 
 		for i in range(0, 3):
 			sense.set_pixels(green_pixel_array)
