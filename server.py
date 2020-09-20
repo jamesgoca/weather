@@ -100,13 +100,13 @@ def color_grid():
 		"ip": request.remote_addr
 	}
 
-	empty_grid = np.zeros((8,8))
+	empty = [0] * 64
 
-	print(empty_grid)
+	empty_grid = np.array(empty)
 
-	empty_grid[2][2] = "2"
+	new_array = np.array_split(empty_grid, 8)
 
-	print(empty_grid)
+	print(new_array)
 
 	with open("color_grid.txt") as file:
 		colors = file.readlines()[0]
