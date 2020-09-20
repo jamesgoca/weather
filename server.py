@@ -117,11 +117,11 @@ def color_grid():
 
 		message = { "grid": grid_rows }
 
-		return grid_rows
+		return jsonify(message)
 	else:
 		message = { "message": "Please enter a valid pixel location." }
 
-		return message 
+		return jsonify(message) 
 
 @app.route("/data.json")
 def get_data():
