@@ -4,7 +4,6 @@ import pyowm
 import psutil
 import datetime
 import time
-import numpy as np
 from sense_hat import SenseHat
 from gpiozero import CPUTemperature
 from dotenv import load_dotenv
@@ -100,22 +99,28 @@ def color_grid():
 		"ip": request.remote_addr
 	}
 
-	empty = [0] * 64
+	if data["x"] <= 7 and data["x"] >= 0 and data["y"] <= 7 and data["y"] >= 0:
+		with open("grid.csv", "r") as file:
+			grid_rows = []
+			reader = csv.reader(file)
 
-	empty_grid = np.array(empty)
+			for r in reader:
+				grid_rows.append(r)
 
-	new_array = np.array_split(empty_grid, 8)
+		grid_rows[data["x"]][data["y"]] = data["color"]
 
-	with open("color_grid.txt", "w+") as file:
-		file.write(str(new_array))
+		with open("grid.csv", "w", newline="") as file:
+			writer = csv.writer(file)
+			for r in grid_rows:
+				writer.writerow(r)
 
-	for pixel in range(0, len(grid)):
-		if pixel == (x * y):
-			sense.set_pixel(data[x], data[y], data[color])
+		message = { "grid": grid_rows }
 
-	message = { "message": "Pixel at {} (x) {} (y) has been changed.".format(data[x], data[y]) }
+		return grid_rows
+	else:
+		message = { "message": "Please enter a valid pixel location." }
 
-	return message
+		return message 
 
 @app.route("/data.json")
 def get_data():
