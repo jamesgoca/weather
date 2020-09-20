@@ -4,6 +4,7 @@ import pyowm
 import psutil
 import datetime
 import time
+import numpy as np
 from sense_hat import SenseHat
 from gpiozero import CPUTemperature
 from dotenv import load_dotenv
@@ -98,6 +99,14 @@ def color_grid():
 		"color": [255, 255, 255],
 		"ip": request.remote_addr
 	}
+
+	empty_grid = np.zeros((8,8))
+
+	print(empty_grid)
+
+	empty_grid[2][2] = "2"
+
+	print(empty_grid)
 
 	with open("color_grid.txt") as file:
 		colors = file.readlines()[0]
