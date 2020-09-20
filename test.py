@@ -1,5 +1,8 @@
 import csv
 import numpy as np
+from sense_hat import SenseHat
+
+sense = SenseHat()
 
 data = {
 		"x": 3,
@@ -14,7 +17,7 @@ with open("grid.csv", "r") as file:
 	for x in reader:
 		grid_rows.append(x)
 
-new_array = np.array(grid_rows)
+new_array = np.array(grid_rows).astype(np.int)
 
 split_array = np.array_split(new_array, 8)
 
@@ -23,11 +26,13 @@ split_array[data["x"]][data["y"]] = np.array(data["color"]).flatten()
 final = []
 
 for x in split_array:
-	final.append(x.tolist())
+	y = x.tolist()
+	for item in y:
+		final.append(y)
 
-print(final)
+print(final[0][0])
 
-print(len(final[0]))
+sense.set_pixels(final)
 
 # split_array[data["x"]][data["y"]] = str(data["color"])
 
