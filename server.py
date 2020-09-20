@@ -107,7 +107,7 @@ def color_grid():
 	new_array = np.array_split(empty_grid, 8)
 
 	with open("color_grid.txt") as file:
-		file.write(new_array)
+		file.write(str(new_array))
 
 	for pixel in range(0, len(grid)):
 		if pixel == (x * y):
