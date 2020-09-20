@@ -97,7 +97,7 @@ def color_set():
 	data = {
 		"x": request.json.get("x"),
 		"y": request.json.get("y"),
-		"color": [255, 255, 254]
+		"color": request.json.get("color")
 	}
 
 	with open("grid.csv", "r") as file:
