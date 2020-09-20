@@ -90,6 +90,28 @@ def webmentions():
 
 		return jsonify(message), 403
 
+@app.route("/colors", methods=["POST"])
+def color_grid():
+	data = {
+		"x": 1,
+		"y": 1,
+		"color": [255, 255, 255],
+		"ip": request.remote_addr
+	}
+
+	with open("color_grid.txt") as file:
+		colors = file.readlines()[0]
+
+		grid = colors.split(",")
+
+	for pixel in range(0, len(grid)):
+		if pixel == (x * y):
+			sense.set_pixel(data[x], data[y], data[color])
+
+	message = { "message": "Pixel at {} (x) {} (y) has been changed.".format(data[x], data[y]) }
+
+	return message
+
 @app.route("/data.json")
 def get_data():
 	return send_from_directory("get_weather/data/", "data.json")
