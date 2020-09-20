@@ -115,6 +115,8 @@ def color_grid():
 			for r in grid_rows:
 				writer.writerow(r)
 
+		sense.set_pixels(grid_rows)
+
 		message = { "grid": grid_rows }
 
 		return jsonify(message)
