@@ -51,9 +51,9 @@ def index():
 		wind_speed=forecast.wind()["speed"],
 		outdoor_humidity=forecast.humidity,
 		last_updated_indoors=last_updated_indoors,
-		outside_weather_overview=weather.detailed_status,
-		sunrise=weather.sunrise_time(timeformat='date'),
-		sunset=weather.sunset_time(timeformat='date')
+		outside_weather_overview=forecast.detailed_status,
+		sunrise=forecast.sunrise_time(timeformat='date'),
+		sunset=forecast.sunset_time(timeformat='date')
 	)
 
 @app.route("/stats")
