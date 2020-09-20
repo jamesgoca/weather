@@ -91,7 +91,7 @@ def webmentions():
 
 		return jsonify(message), 403
 
-@app.route("/colors")
+@app.route("/colors", methods=["POST"])
 def color_set():
 	data = {
 		"x": request.json.get("x"),
