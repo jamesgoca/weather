@@ -114,7 +114,16 @@ def color_set():
 
 	split_array = np.array_split(new_array, 8)
 
-	split_array[data["x"]][data["y"]] = np.array(data["color"]).flatten()
+	if request.json.get("pixels"):
+		for p in request.json.get("pixels"):
+			split_array[p[0]][p[1]] = np.array(p[2]).flatten()
+	else:
+		split_array[data["x"]][data["y"]] = np.array(data["color"]).flatten()
+
+	if not request.json.get("pixels") and (not request.json.get("x") and not request.json.get("y") and not request.json.get("color")):
+		message = { "message": "Please specify either an array of pixels or an x, y, z position with an array of colors." }
+
+		return jsonify(message)
 
 	final = []
 
